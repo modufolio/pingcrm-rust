@@ -173,6 +173,7 @@ pub struct UserUpdate {
     pub last_name: Option<String>,
     pub password: Option<String>,
     pub password_version: Option<i32>,
+    pub owner: Option<bool>,
     pub photo_filename: Option<String>,
     pub roles: Option<String>,
     pub updated_at: NaiveDateTime,
@@ -194,6 +195,7 @@ impl UserUpdate {
             last_name: None,
             password: None,
             password_version: None,
+            owner: None,
             photo_filename: None,
             roles: None,
             updated_at: chrono::Utc::now().naive_utc(),
@@ -226,6 +228,16 @@ impl UserUpdate {
     pub fn password(mut self, password: String) -> Self {
         self.password = Some(password);
         self.password_version = Some(self.password_version.unwrap_or(1) + 1);
+        self
+    }
+
+    pub fn owner(mut self, owner: bool) -> Self {
+        self.owner = Some(owner);
+        self
+    }
+
+    pub fn photo_filename(mut self, photo_filename: String) -> Self {
+        self.photo_filename = Some(photo_filename);
         self
     }
 

@@ -48,3 +48,4 @@ package-lock.json
 public/build/
 
 migrations/.diesel_lock
+/public/uploads
