@@ -1,0 +1,49 @@
+
+#-------------------------
+# Rust Development Files
+#-------------------------
+
+debug/
+target/
+*.pid
+*.log
+**/*.rs.bk
+
+
+#-------------------------
+# IDE / Development Files
+#-------------------------
+
+# Jetbrains editors (PHPStorm, etc)
+.idea/
+*.iml
+
+# Visual Studio Code
+.vscode/
+
+
+.DS_Store
+.env
+
+#-------------------------
+# Database
+#-------------------------
+
+*.db
+*.db-shm
+*.db-shm
+*.db-wal
+
+#-------------------------
+# Node.js
+#-------------------------
+
+node_modules/
+package-lock.json
+
+
+#-------------------------
+# Vite build artifacts
+#-------------------------
+public/build/
+
