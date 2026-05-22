@@ -1,0 +1,151 @@
+# TUS (Tus Upload Protocol) Configuration
+# https://tus.io/protocols/resumable-upload
+
+[server]
+# API endpoint path for TUS uploads
+# Default: "/tus"
+api_path = "/tus"
+
+# Maximum upload size in bytes
+# Default: 104857600 (100 MB)
+# Set to 0 for unlimited (not recommended)
+max_size = 104857600
+
+# Chunk size for uploads in bytes
+# Default: 5242880 (5 MB)
+# Smaller chunks = more resilient to network issues
+# Larger chunks = faster uploads on stable connections
+chunk_size = 5242880
+
+[storage]
+# Upload directory path (relative to project root)
+# Default: "public/uploads/tus"
+upload_dir = "public/uploads/tus"
+
+# Container directory for upload metadata
+# Default: "public/uploads/tus/.containers"
+# This stores JSON files with upload state and metadata
+container_dir = "public/uploads/tus/.containers"
+
+# Enable automatic cleanup of expired uploads
+# Default: true
+auto_cleanup = true
+
+# Upload expiration time in seconds
+# Default: 86400 (24 hours)
+# Incomplete uploads will be deleted after this time
+expiration_time = 86400
+
+[protocol]
+# TUS protocol version
+# Don't change this unless you know what you're doing
+version = "1.0.0"
+
+# Supported TUS extensions
+# Available: creation, checksum, concatenation, termination, creation-with-upload
+extensions = [
+    "creation",
+    "checksum",
+    "concatenation",
+    "termination",
+    "creation-with-upload"
+]
+
+# Supported checksum algorithms
+# Available: md5, sha1, sha256, sha512
+checksum_algorithms = ["md5", "sha1", "sha256", "sha512"]
+
+[cors]
+# Enable CORS for TUS endpoints
+# Default: true
+enabled = true
+
+# Allowed origins for CORS
+# Default: ["*"] (allow all origins)
+# For production, specify exact origins: ["https://example.com"]
+allowed_origins = ["*"]
+
+# Allowed methods for CORS
+allowed_methods = ["OPTIONS", "POST", "HEAD", "PATCH", "DELETE"]
+
+# Allowed headers for CORS
+# "*" allows all headers
+allowed_headers = ["*"]
+
+# Max age for CORS preflight cache in seconds
+# Default: 86400 (24 hours)
+max_age = 86400
+
+[database]
+# Enable automatic database saving on upload completion
+# Default: true
+# When enabled, completed uploads are automatically saved to the media table
+auto_save = true
+
+# Default visibility for saved uploads
+# Default: true (public)
+default_public = true
+
+[security]
+# Enable filename sanitization
+# Default: true
+# Removes dangerous characters and path traversal attempts
+sanitize_filenames = true
+
+# Allowed file extensions (empty array = allow all)
+# Example: ["jpg", "jpeg", "png", "gif", "pdf", "mp4"]
+# Default: [] (no restrictions)
+allowed_extensions = []
+
+# Blocked file extensions (takes precedence over allowed_extensions)
+# Example: ["exe", "bat", "sh", "php"]
+# Default: ["exe", "bat", "cmd", "sh", "php", "phtml"]
+blocked_extensions = ["exe", "bat", "cmd", "sh", "php", "phtml"]
+
+# Enable MIME type validation
+# Default: true
+validate_mime_types = true
+
+# Allowed MIME types (empty array = allow all)
+# Example: ["image/jpeg", "image/png", "application/pdf"]
+# Default: [] (no restrictions)
+allowed_mime_types = []
+
+# Blocked MIME types (takes precedence over allowed_mime_types)
+# Default: ["application/x-executable", "application/x-msdownload"]
+blocked_mime_types = [
+    "application/x-executable",
+    "application/x-msdownload",
+    "application/x-dosexec"
+]
+
+[logging]
+# Enable detailed logging for TUS operations
+# Default: false
+# Set to true for debugging upload issues
+verbose = false
+
+# Log upload progress events
+# Default: false
+# Logs every chunk upload (can be noisy)
+log_progress = false
+
+[performance]
+# Enable concurrent uploads
+# Default: true
+# Allows multiple chunks to be uploaded simultaneously
+concurrent_uploads = true
+
+# Maximum concurrent uploads per client
+# Default: 5
+# 0 = unlimited (not recommended)
+max_concurrent_uploads = 5
+
+# Enable upload rate limiting
+# Default: false
+rate_limiting = false
+
+# Maximum upload rate in bytes per second (if rate_limiting is enabled)
+# Default: 0 (unlimited)
+# Example: 1048576 (1 MB/s)
+max_upload_rate = 0

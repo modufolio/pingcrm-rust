@@ -1,0 +1,101 @@
+[package]
+name = "app"
+version = "0.1.0"
+edition = "2021"
+authors = ["AppKit Contributors"]
+description = "Demo application for testing and development"
+
+[lib]
+name = "app"
+path = "src/lib.rs"
+
+# Integration test binary
+[[bin]]
+name = "app-server"
+path = "src/main.rs"
+
+# Database seeding binary
+[[bin]]
+name = "seed"
+path = "bin/seed.rs"
+
+# Console binary
+[[bin]]
+name = "console"
+path = "bin/console.rs"
+
+[dependencies]
+# Internal dependencies
+appkit-core = { workspace = true }
+
+# Web framework (workspace)
+axum = { workspace = true }
+axum-extra = { workspace = true }
+tokio = { workspace = true }
+tower = { workspace = true }
+tower-http = { workspace = true }
+tower-sessions = { workspace = true }
+tower-sessions-redis-store = { workspace = true }
+
+# Database (workspace)
+diesel = { workspace = true }
+diesel-async = { workspace = true }
+diesel_migrations = { workspace = true }
+
+# Serialization (workspace)
+serde = { workspace = true }
+serde_json = { workspace = true }
+serde_urlencoded = { workspace = true }
+urlencoding = { workspace = true }
+base64 = { workspace = true }
+
+# Error handling (workspace)
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+
+# Tracing (workspace)
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+
+# Authentication & Security
+chrono = { workspace = true }
+uuid = { workspace = true }
+time = { workspace = true }
+sha1 = { workspace = true }
+sha2 = { workspace = true }
+md5 = { workspace = true }
+rand = { workspace = true }
+
+# Validation
+validator = { workspace = true }
+regex = { workspace = true }
+natord = { workspace = true }
+walkdir = { workspace = true }
+glob = { workspace = true }
+lazy_static = { workspace = true }
+
+# HTTP utilities
+http-body-util = { workspace = true }
+mime_guess = { workspace = true }
+url = { workspace = true }
+
+# Image processing
+image = { workspace = true }
+
+# Async utilities
+async-trait = { workspace = true }
+
+# Config
+dotenv = { workspace = true }
+toml = { workspace = true }
+
+# Fake data generation
+fake = { workspace = true }
+clap = { version = "4.5.53", features = ["derive"] }
+colored = "2.1"
+atty = "0.2"
+
+[dev-dependencies]
+axum-test = "18"
+
+# Integration tests will go in app/tests/
