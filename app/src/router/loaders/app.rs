@@ -24,7 +24,7 @@ impl Default for AppRoutes {
 impl RouteLoader<App> for AppRoutes {
     fn load(&self) -> Router<App> {
         Router::new()
-            .route("/logout", post(security::logout))
+            .route("/logout", post(security::logout).delete(security::logout))
             .route("/users", get(users_pages::index).post(users_pages::store))
             .route("/users/create", get(users_pages::create))
             .route("/users/{id}/edit", get(users_pages::edit))
@@ -66,6 +66,7 @@ impl RouteLoader<App> for AppRoutes {
     fn get_routes(&self) -> Vec<RouteInfo> {
         vec![
             RouteInfo::new("logout", "/logout", "POST"),
+            RouteInfo::new("logout_delete", "/logout", "DELETE"),
             RouteInfo::new("users", "/users", "GET"),
             RouteInfo::new("users_create", "/users/create", "GET"),
             RouteInfo::new("users_store", "/users", "POST"),
